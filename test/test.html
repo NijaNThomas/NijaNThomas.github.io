@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<style type="text/css">
+	
+	.team-content {
+		width: 280px;
+		height: 600px;
+		background-color: green;
+		position: relative;
+
+	}
+	
+	.team-content img {
+		max-width: 280px;
+		margin: 0;
+		display: block;
+	}
+
+	.team-content h2 {
+		background-color: red;
+		margin: 0;
+		position: relative;
+		bottom: 0px;
+		transition: bottom 1s ease-out;
+	}
+
+	.team-content .panel {
+		background-color: yellow;
+		position: absolute;
+		bottom: 220.3px;
+		right: 0px;
+		left: 0px;
+		max-height: 0;
+		overflow: hidden;
+  		transition: max-height 1s ease-out;
+	}
+	
+		
+	
+	.overflow-wrapper {
+		overflow: hidden;
+	}
+	.banner-left {
+	  left: 101%;
+	  font-size: 20pt; /*Width of pointer*/
+	  width: 98%;
+	  height: 4em;
+	  position: relative;
+	  background: gray;
+	  text-align: center;
+	  vertical-align: middle;
+	  transition: left 1s ease-out;
+	  
+	}
+	.banner-left:after {
+	  content: "";
+	  position: absolute;
+	  left: 0;
+	  bottom: 0;
+	  width: 0;
+	  height: 0;
+	  border-left: 1.25em solid white;
+	  border-top: 2em solid transparent;
+	  border-bottom: 2em solid transparent;
+	}
+	.banner-right {
+	  right: 101%;
+	  font-size: 20pt; /*Width of pointer*/
+	  width: 98%;
+	  height: 4em;
+	  position: relative;
+	  background: gray;
+	  text-align: center;
+	  vertical-align: middle;
+	  transition: right 1s ease-out;
+	  
+	}
+	.banner-right:after {
+
+	  content: "";
+	  position: absolute;
+	  right: 0;
+	  bottom: 0;
+	  width: 0;
+	  height: 0;
+	  border-right: 1.25em solid white;
+	  border-top: 2em solid transparent;
+	  border-bottom: 2em solid transparent;
+	}
+	.banner-content {
+	  width: 100%;
+	  position: relative;
+	  top: 1.25em;
+	  color: black;
+	}
+
+</style>
+
+<body>
+	<div class="team-content">
+		<img src="SSC.png">
+		<h2 class="team-name">Nithin Prabhakaran</h2>
+		<div class="panel">
+			<p>Student Section Chair <br>Student at TKMCE</p>
+		</div>
+		<div class="team-inner">
+			
+			
+			<button class="accordion">Go up</button>
+			
+		</div>
+	</div>
+
+	<div class="banner-group">
+		<div class="overflow-wrapper">
+			<div class="banner-left">
+			  <div class="banner-content">
+			    <p>ORIENTATION PROGRAMME FOR FRESHMEN</p>
+			  </div>
+			</div>
+		</div>
+		<div class="overflow-wrapper">
+			<div class="banner-right">
+			  <div class="banner-content">
+			    <p>FRESHMEN RECRUITMENT</p>
+			  </div>
+			</div>
+		</div>
+		<div class="overflow-wrapper">
+			<div class="banner-left">
+			  <div class="banner-content">
+			    <p>STUDENT DEVELOPMENT PROGRAM (SDP)</p>
+			  </div>
+			</div>
+		</div>
+		<div class="overflow-wrapper">
+			<div class="banner-right">
+			  <div class="banner-content">
+			    <p>Lorem ipsum dolor sit amet</p>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+		  acc[i].addEventListener("click", function() {
+		    
+		    var panel = document.getElementsByClassName("panel")[0];
+		    
+		    if (panel.style.maxHeight) {
+		      panel.style.maxHeight = null;
+		    } else {
+		      panel.style.maxHeight = panel.scrollHeight + "px";
+		    }
+			
+			
+			var name = document.getElementsByClassName("team-name")[0];
+			nameBottomValue = getComputedStyle(name).bottom;
+			
+			if (nameBottomValue == "0px") {
+				name.style.bottom = "66px";
+			} else {
+				name.style.bottom = "0px";
+			}
+
+			
+			/*var pos = 0;
+			clearInterval(id);
+			id = setInterval(frame, 14.5);
+			function frame() {
+				if (pos == 65) {
+					clearInterval(id);
+				} else {
+					pos++;
+					name.style.bottom = pos + "px";
+				}
+			}*/
+		
+
+
+	      });
+		}
+		window.addEventListener('scroll', function() {
+			var element = document.querySelector('.banner-group');
+			var position = element.getBoundingClientRect();
+
+			// checking whether fully visible
+			if(position.top >= 0 && position.bottom <= window.innerHeight) {
+				
+				var j;
+				
+
+				var bannerLeft = document.getElementsByClassName("banner-left");
+				console.log(bannerLeft, "--left--");
+
+				var bannerRight = document.getElementsByClassName("banner-right");
+				console.log(bannerRight, "--right--");
+
+				for (j=0; j < bannerLeft.length; j++) {
+					bannerLeftValue = getComputedStyle(bannerLeft[j]).left;
+					console.log(bannerLeftValue,"--jleft--");
+
+					if (bannerLeftValue == "50px") {
+						bannerLeft[j].style.left = "101%";
+						console.log(bannerLeft[j].style.left,"--1--");
+					} else {
+						bannerLeft[j].style.left = "50px";
+						console.log(bannerLeft[j].style.left,"--2--");
+					}
+				}
+				for (j=0; j < bannerRight.length; j++) {
+					bannerRightValue = getComputedStyle(bannerRight[j]).right;
+					console.log(bannerRightValue,"--jRight--");
+
+					if (bannerRightValue == "50px") {
+						bannerRight[j].style.right = "101%";
+						console.log(bannerRight[j].style.right,"--1--");
+					} else {
+						bannerRight[j].style.right = "50px";
+						console.log(bannerRight[j].style.right,"--2--");
+					}
+				}
+			}
+
+			// checking for partial visibility
+			
+		});
+	</script>
+</body>
+</html>
